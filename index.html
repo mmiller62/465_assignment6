@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Home Owner's Loan Corporation Redlining</title>
+		<link rel="stylesheet" href="style.css">
+		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+   			integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+   			crossorigin=""/>
+
+   		 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  		 	integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   			crossorigin=""></script>
+
+	</head>
+	
+	<body>
+		<div id="intro">
+			<h2> Home Owner's Loan Corperation Redlining</h2>
+			<img src="/Users/meganmiller/Library/CloudStorage/Box-Box/465 - WebGIS/Assignment 5/holc-scan.jpg" style="float: right;width: 400px;height: 316px;">
+			<p> The Home Owners' Loan Corporation (HOLC), was created in 1933 and had a goal of refinancing home mortgages that were in default in order to prevent foreclosure. Additionally, this program would help expand buying opportunities. However, maps created in the 1930s were color-coded based by mortgage security risks. Areas that had a majority African American population were often color coded in red for “hazardous”. This designation and the racist language in HOLC appraisal sheets allowed for federal support of practices that contributed to segregation in the United States. </p>
+
+			<p> Even in present day there is evidence of the impacts of the redlining practices. The racial segregation is still prevalent in many communities, such as Chicago. The map below shows the 2010 Census Tracts in Chicago cross walked with the historical HOLC maps to determine the amount of redlining in present day areas. </p>
+
+			
+
+			</div>
+		
+		<div id="map">
+			<script> 
+			var map = L.map('map').setView([40.752924, -101.821364],5);
+			var CartoDB_VoyagerLabelsUnder = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+				subdomains: 'abcd',
+				maxZoom: 20
+			}).addTo(map)
+			
+		// map elements markers// 
+		var markerChi = L.circle([41.956154, -87.730960],{
+			color:'purple',
+			radius:2000,
+			}).addTo(map).bindPopup("Chicago");
+		var markerCBus=L.circle([39.139609, -85.742475],{
+			color:'purple',
+			radius:2000,
+			}).addTo(map)
+		var line1 = L.polyline([[41.956154, -87.730960], [39.139609, -85.742475]],).addTo(map); //chi to cbus
+		var plane = l.icon({
+			iconUrl: 'plane.png',
+			iconSize: [400,400]
+		})
+		var markerIND=L.marker([39.716331, -86.296067],{
+			icon: plane
+		}).addTo(map)
+		var line2 = L.polyline([[39.139609, -85.742475],[39.716331, -86.296067]],).addTo(map); //cbus to ind
+		var markerLAX=L.marker([33.943556, -118.406748],).addTo(map)
+		var line3=L.polyline([[39.716331, -86.296067],[33.943556, -118.406748]],).addTo(map); //ind to lax
+		var markerSLC=L.marker([40.787077, -111.982578],).addTo(map)
+		var line4=L.polyline([[33.943556, -118.406748],[40.787077, -111.982578]],).addTo(map); //lax to slc
+		// var markerOgd=L.marker([41.222687, -111.975912],).addTo(map)
+		// var line5=L.polyline([[40.787077, -111.982578],[41.222687, -111.975912]],).addTo(map);
+		var markerArches=L.marker([38.683345, -109.594035],).addTo(map)
+		var line6=L.polyline([[40.787077, -111.982578],[38.683345, -109.594035]],).addTo(map); //slc to arches 
+		var markerDen=L.marker([39.735437, -104.973663],).addTo(map)
+		var line7=L.polyline([[38.683345, -109.594035],[39.735437, -104.973663]],).addTo(map); //arches to denver
+		var markerKC=L.marker([39.106702, -94.585570],).addTo(map)
+		var line8=L.polyline([[39.735437, -104.973663],[39.106702, -94.585570]],).addTo(map); //denver to KC
+		var line9=L.polyline([[39.106702, -94.585570],[39.139609, -85.742475]],).addTo(map);
+
+		// map elements 	
+			</script>
+
+		</div>
+
+		<div id="info">
+		<p> 	An area-weighted index was created in order to determine the amount of redlining in the area. This was calculated using the formula 
+		<i>Redlining=((A*-1)+(B*-0.5)+(C*0.5)+(D*1))/T</i>
+		A, B, C, and D is the area of the respective HOLC grade, and T is the total area of geography. This results in a value between -1 and 1, where -1 means there is no redlining in the geography, and 1 means the entire geography was redlined. </p>
+		<p> Historic redline maps for the United States have been digitized by University of Richmond's Digital Scholarship Lab, and can be found on the webpage <a href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58">Mapping Inequality</a></p>
+		
+
+		</div>
+
+	</body>	
+</html>
