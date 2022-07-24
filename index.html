@@ -1,11 +1,15 @@
 <!doctype html>
 <html>
 	<head>
-		<title> Home Owner's Loan Corporation Redlining</title>
+		<title> Megan's Summer Adventure</title>
+		 <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400&display=swap" rel="stylesheet"> 
 		<link rel="stylesheet" href="style.css">
 		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
    			integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
    			crossorigin=""/>
+
 
    		 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
   		 	integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
@@ -15,13 +19,9 @@
 	
 	<body>
 		<div id="intro">
-			<h2> Home Owner's Loan Corperation Redlining</h2>
-			<img src="/Users/meganmiller/Library/CloudStorage/Box-Box/465 - WebGIS/Assignment 5/holc-scan.jpg" style="float: right;width: 400px;height: 316px;">
-			<p> The Home Owners' Loan Corporation (HOLC), was created in 1933 and had a goal of refinancing home mortgages that were in default in order to prevent foreclosure. Additionally, this program would help expand buying opportunities. However, maps created in the 1930s were color-coded based by mortgage security risks. Areas that had a majority African American population were often color coded in red for “hazardous”. This designation and the racist language in HOLC appraisal sheets allowed for federal support of practices that contributed to segregation in the United States. </p>
-
-			<p> Even in present day there is evidence of the impacts of the redlining practices. The racial segregation is still prevalent in many communities, such as Chicago. The map below shows the 2010 Census Tracts in Chicago cross walked with the historical HOLC maps to determine the amount of redlining in present day areas. </p>
-
-			
+			<h2> Megan's Summer Adventure</h2>
+			<!-- <img src="/Users/meganmiller/Library/CloudStorage/Box-Box/465 - WebGIS/Assignment 5/holc-scan.jpg" style="float: right;width: 400px;height: 316px;"> -->
+			<p>  Over the summer my younger brother, Luke, has been doing an engineering internship in Salt Lake City, Utah. Since I have a flexible job and some free time I have been tasked to fly out to Utah and the road trip back with him (it’s possible my parents don’t trust him to drive home alone). This map shows my extensive travels over the next two weeks.  </p>
 
 			</div>
 		
@@ -36,46 +36,113 @@
 			
 		// map elements markers// 
 		var markerChi = L.circle([41.956154, -87.730960],{
-			color:'purple',
+			color: "purple",
 			radius:2000,
 			}).addTo(map).bindPopup("Chicago");
 		var markerCBus=L.circle([39.139609, -85.742475],{
 			color:'purple',
 			radius:2000,
-			}).addTo(map)
-		var line1 = L.polyline([[41.956154, -87.730960], [39.139609, -85.742475]],).addTo(map); //chi to cbus
-		var plane = l.icon({
+			}).addTo(map).bindPopup("Columbus,IN")
+		var line1 = L.polyline([[41.956154, -87.730960], [39.139609, -85.742475]],{
+			weight: 1,
+  			color: 'black'}).addTo(map); //chi to cbus
+		var plane = L.icon({
 			iconUrl: 'plane.png',
-			iconSize: [400,400]
+			iconSize: [30,30]
 		})
 		var markerIND=L.marker([39.716331, -86.296067],{
 			icon: plane
 		}).addTo(map)
-		var line2 = L.polyline([[39.139609, -85.742475],[39.716331, -86.296067]],).addTo(map); //cbus to ind
-		var markerLAX=L.marker([33.943556, -118.406748],).addTo(map)
-		var line3=L.polyline([[39.716331, -86.296067],[33.943556, -118.406748]],).addTo(map); //ind to lax
-		var markerSLC=L.marker([40.787077, -111.982578],).addTo(map)
-		var line4=L.polyline([[33.943556, -118.406748],[40.787077, -111.982578]],).addTo(map); //lax to slc
+		var line2 = L.polyline([[39.139609, -85.742475],[39.716331, -86.296067]],{
+			weight: 1,
+  			color: 'black'}).addTo(map); //cbus to ind
+		var markerLAX=L.marker([33.943556, -118.406748],
+			{icon: plane
+			}).addTo(map).bindPopup("Los Angeles, CA")
+		var line3=L.polyline([[39.716331, -86.296067],[33.943556, -118.406748]],{
+			weight: 2,
+		 	dashArray: '5, 10',
+  			lineCap: 'square',  
+  			color: 'black'}).addTo(map); //ind to lax
+		var markerSLC=L.marker([40.787077, -111.982578],
+			{icon:plane
+			}).addTo(map).bindPopup("Salt Lake City, UT")
+		var line4=L.polyline([[33.943556, -118.406748],[40.787077, -111.982578]],{
+			weight: 2,
+		 	dashArray: '5, 10',
+  			lineCap: 'square', 
+  			color: 'black'
+  			}).addTo(map); //lax to slc
 		// var markerOgd=L.marker([41.222687, -111.975912],).addTo(map)
 		// var line5=L.polyline([[40.787077, -111.982578],[41.222687, -111.975912]],).addTo(map);
-		var markerArches=L.marker([38.683345, -109.594035],).addTo(map)
-		var line6=L.polyline([[40.787077, -111.982578],[38.683345, -109.594035]],).addTo(map); //slc to arches 
-		var markerDen=L.marker([39.735437, -104.973663],).addTo(map)
-		var line7=L.polyline([[38.683345, -109.594035],[39.735437, -104.973663]],).addTo(map); //arches to denver
-		var markerKC=L.marker([39.106702, -94.585570],).addTo(map)
-		var line8=L.polyline([[39.735437, -104.973663],[39.106702, -94.585570]],).addTo(map); //denver to KC
-		var line9=L.polyline([[39.106702, -94.585570],[39.139609, -85.742475]],).addTo(map);
-
-		// map elements 	
+		var markerArches=L.circle([38.683345, -109.594035],{
+			color:'purple',
+			radius:2000,
+			}).addTo(map).bindPopup("Arches National Park");
+		var line6=L.polyline([[40.787077, -111.982578],[38.683345, -109.594035]],{
+			weight: 1,
+  			color: 'black'}).addTo(map); //slc to arches 
+		var markerDen=L.circle([39.735437, -104.973663],{
+			color:'purple',
+			radius:2000,
+			}).addTo(map).bindPopup("Denver, CO")
+		var line7=L.polyline([[38.683345, -109.594035],[39.735437, -104.973663]],{
+			weight: 1,
+  			color: 'black'}).addTo(map); //arches to denver
+		var markerKC=L.circle([39.106702, -94.585570],{
+			color:'purple',
+			radius:2000,
+			}).addTo(map).bindPopup("Kansas City, MO");
+		var line8=L.polyline([[39.735437, -104.973663],[39.106702, -94.585570]],{
+			weight: 1,
+  			color: 'black'}).addTo(map); //denver to KC
+		var line9=L.polyline([[39.106702, -94.585570],[39.139609, -85.742475]],{
+			weight: 1,
+  			color: 'black'}).addTo(map);
+		var poly=L.polygon([
+            [48.4000324961068,  -99.4482421875],
+           	[46.800059446787316,  -100.21728515624999],
+           	[46.830133640447386, -102.37060546875],
+            [45.84410779560204, -100.2392578125],
+            [44.24519901522129, -101.44775390625],
+            [45.259422036351694, -99.36035156249999],
+            [44.33956524809713, -96.96533203125],
+            [45.96642454131025, -98.1298828125],
+            [46.99524110694593, -96.2841796875],
+            [46.9052455464292, -98.39355468749999],
+            [48.40003249610685, -99.4482421875],],{color:"purple",fillOpacity:.11,},
+        	 ).addTo(map).bindPopup("Random Polygon")
+          
 			</script>
 
 		</div>
 
 		<div id="info">
-		<p> 	An area-weighted index was created in order to determine the amount of redlining in the area. This was calculated using the formula 
-		<i>Redlining=((A*-1)+(B*-0.5)+(C*0.5)+(D*1))/T</i>
-		A, B, C, and D is the area of the respective HOLC grade, and T is the total area of geography. This results in a value between -1 and 1, where -1 means there is no redlining in the geography, and 1 means the entire geography was redlined. </p>
-		<p> Historic redline maps for the United States have been digitized by University of Richmond's Digital Scholarship Lab, and can be found on the webpage <a href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58">Mapping Inequality</a></p>
+		<h3> Days 2-3: Columbus, IN </h3>
+<p> I will be staying in Indiana for a few days, during which I will be working remotely, cuddling my cats, and enjoying the fact my parents will be doing all the cooking for me. </p>
+
+<h3> Day 4: Indiana to Salt Lake City </h3>
+<p> Despite the fact my apartment is 5 miles from Chicago O’Hare airport it was somehow cheaper to fly out of the Indianapolis airport. I fly from Indianapolis to LAX, where I will have a hopefully chill 90-minute layover before flying to Salt Lake City. </p>
+
+<h3>Day 5: Salt Lake City </h3>
+<p>My brother has to work this day, so I will enjoy seeing Salt Lake City and seeing if their public transportation system is more reliable than the CTA. Apparently, my brother is throwing a party in the evening that I am not invited to. I plan on crashing said party. </p>
+
+<h3>Day 6: Arches National Park </h3>
+<p>We will leave Salt Lake City and go to Arches National Park near Moab, UT. Despite the fact I am not an outdoorsy person I feel obligated to at least go to one national park while I am out them. </p>
+
+<h3>Day 7: Denver</h3>
+<p>We begin the trek home and plan on stopping overnight in Denver.</p>
+
+<h3>Day 8: Kansas City</h3>
+<p>Another full day of driving, mostly through Kansas which is not a super fun drive. </p>
+
+<h3>Day 9+: Home</h3>
+<p>We will arrive back in Indiana, where I will stay a few more days to see some friends and family. And also cuddle my cats some more before I head back to Chicago. </p>
+<figure>
+<img src="/Users/meganmiller/Library/CloudStorage/Box-Box/465 - WebGIS/Assignment 6/Calvin.jpg" style="float: auto;">
+<figcaption>My cat Calvin, who likes to be outside too much to live in Chicago.</figcaption>
+</figure>
+</div>
 		
 
 		</div>

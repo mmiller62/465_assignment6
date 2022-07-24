@@ -1,12 +1,13 @@
-body {background-color: #D7CEC7;}
+body {background-color: #feffea,}
 
-h2{color: #76323f}
+h2{color: #D496A7}
+h3{color: #9D695A}
 
 #intro {
 	width:  600px;
 	margin: auto;
 	font-family: 'Bitter', serif;
-	color:  #565656;
+	color: #030027;
 }
 
 #map{
@@ -20,5 +21,12 @@ h2{color: #76323f}
 	width:  600px;
 	margin: auto;
 	font-family: 'Bitter', serif;
-	color:  #565656;
+	color: #030027;
 }
+
+
+figcaption {
+  color: #030027;
+  font-style: italic;
+  font-size: 10px;
+  
